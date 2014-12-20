@@ -46,18 +46,16 @@ module Kubr
         send_request :get, "#{entity.pluralize}/#{id}"
       end
 
-      unless entity == 'minion'
-        define_method "create_#{entity.underscore}" do |config|
-          send_request :post, entity.pluralize, config
-        end
+      define_method "create_#{entity.underscore}" do |config|
+        send_request :post, entity.pluralize, config
+      end
 
-        define_method "update_#{entity.underscore}" do |id, config|
-          send_request :put, "#{entity.pluralize}/#{id}", config
-        end
+      define_method "update_#{entity.underscore}" do |id, config|
+        send_request :put, "#{entity.pluralize}/#{id}", config
+      end
 
-        define_method "delete_#{entity.underscore}" do |id|
-          send_request :delete, "#{entity.pluralize}/#{id}"
-        end
+      define_method "delete_#{entity.underscore}" do |id|
+        send_request :delete, "#{entity.pluralize}/#{id}"
       end
     end
   end
